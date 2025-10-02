@@ -1,5 +1,5 @@
 import React from 'react';
-import type { AdminData, SecuritySettings } from '../../interfaces/parametres.ts';
+import type { AdminData, SecuritySettings } from '../../interfaces/parametres';
 
 interface AddAdminModalProps {
     isOpen: boolean;
