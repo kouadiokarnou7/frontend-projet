@@ -1,9 +1,9 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useEglise } from '../../hooks/admin/eglise/eglise';
 import { useAddEglise } from '../../hooks/admin/eglise/addEglise';
-import AddEgliseModal from '../../composants/eglise/Addeglisemodal';
+import AddEgliseModal from '../../composants/admin/eglise/Addeglisemodal';
 import type { Eglise } from '../../interfaces/eglise';
-import Recherche from '../../composants/eglise/recherche';
+import Recherche from '../../composants/admin/eglise/recherche';
 
 const Eglises: React.FC = () => {
   // Hook pour la gestion des églises

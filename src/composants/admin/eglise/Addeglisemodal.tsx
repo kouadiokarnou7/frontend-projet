@@ -1,5 +1,5 @@
 import React from "react";
-import type { Eglise } from "../../interfaces/eglise";
+import type { Eglise } from "../../../interfaces/eglise";
 
 interface EgliseModalProps {
   isOpen: boolean;
