@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { useEglise } from '../../hooks/eglise/eglise';
-import { useAddEglise } from '../../hooks/eglise/addEglise';
+import { useEglise } from '../../hooks/admin/eglise/eglise';
+import { useAddEglise } from '../../hooks/admin/eglise/addEglise';
 import AddEgliseModal from '../../composants/eglise/Addeglisemodal';
 import type { Eglise } from '../../interfaces/eglise';
 import Recherche from '../../composants/eglise/recherche';
@@ -171,17 +171,18 @@ const Eglises: React.FC = () => {
                     </div>
                   </div>
                   <div className="px-6 py-4 bg-gray-50 flex gap-3 justify-end">
-                    <button
+                          <button
                       onClick={() =>
-                        handleDelete(
-                          (item.id && String(item.id)) || (reference && String(reference)) || ''
+                        deleteEglise(
+                          (item.id && String(item.id)) || (reference && String(reference)) || ""
                         )
                       }
                       className="bg-red-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-red-600 transition-colors"
-                      disabled={!item.id && !reference}
+                      disabled={!item.id && !reference} // désactive si aucune référence
                     >
                       Supprimer
                     </button>
+
                     <button
                       onClick={() => {
                         // TODO: Implémenter l'édition

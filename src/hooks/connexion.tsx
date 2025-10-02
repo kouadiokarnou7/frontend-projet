@@ -16,6 +16,8 @@ export default function useConnexion(): UseConnexionReturn {
     username: "",
     email: "",
     password: "",
+    telephone: "",
+    role: "user", // Valeur par défaut
   });
 
   const [message, setMessage] = useState<string>("");

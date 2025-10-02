@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
-import type { Eglise, UseEgliseReturn } from "../../interfaces/eglise";
+import type { Eglise, UseEgliseReturn } from "../../../interfaces/eglise";
 
 const BASE_URL = 'http://localhost:5000';
 

@@ -1,7 +1,7 @@
 
 import './../../App.css';
-import { useParametres } from '../../hooks/parametre/parametres';
-import { useAddAdmin } from '../../hooks/parametre/addAdmin';
+import { useParametres } from '../../hooks/admin/parametre/parametres';
+import { useAddAdmin } from '../../hooks/admin/parametre/addAdmin';
 import AddAdminModal from '../../composants/admin/AddAdminModal';
 import '../../../src/assets/parametre.css'
 

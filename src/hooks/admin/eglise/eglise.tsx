@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import type { Eglise } from "../../interfaces/eglise";
+import type { Eglise } from "../../../interfaces/eglise";
 
 const BASE_URL = 'http://localhost:5000';
 
@@ -84,30 +84,47 @@ export const useEglise = (): UseEgliseReturn => {
 
 
   // Suppression d'une église
-  /*
-  const deleteEglise = async (id: string) => {
-    if (!window.confirm('Êtes-vous sûr de vouloir supprimer cette église ?')) return;
+  
+  const deleteEglise = async (identifiant: string) => {
+  if (!identifiant) {
+    showMessage("Erreur : identifiant invalide");
+    return;
+  }
 
-    try {
-      const egliseObj = eglises.find(e => e.id === id) as any;
-      const backendId = egliseObj?.__backendId ?? egliseObj?.id ?? id;
+  if (!window.confirm("Êtes-vous sûr de vouloir supprimer cette église ?")) return;
 
-      await axios.delete(`${BASE_URL}/eglise/supprimer/${encodeURIComponent(String(backendId))}`);
+  try {
+    // ✅ Ici, on garde simplement identifiant, pas besoin de redeclarer `references`
+    await axios.delete(`${BASE_URL}/harriste/supprimer/eglise/${identifiant}`);
 
-      setEglises(prev => prev.filter(eglise => eglise.id !== id));
-      showMessage('Église supprimée avec succès');
-    } catch (error: any) {
-      console.error('Erreur lors de la suppression:', {
-        message: error?.message,
-        status: error?.response?.status,
-        data: error?.response?.data
-      });
-      const apiMsg = error?.response?.data?.message;
-      showMessage(apiMsg ? `Erreur: ${apiMsg}` : "Erreur lors de la suppression de l'église");
+    // ✅ Mise à jour du state local après suppression
+   setEglise(prev => prev.filter(e => e.reference !== identifiant));
+
+
+    showMessage("✅ Église supprimée avec succès");
+  } catch (error: any) {
+    console.error("Erreur lors de la suppression:", {
+      message: error?.message,
+      status: error?.response?.status,
+      data: error?.response?.data,
+    });
+
+    // ✅ Messages plus clairs
+    if (error?.response) {
+      // Erreur côté serveur
+      const apiMsg = error.response.data?.message || "Erreur serveur inconnue";
+      showMessage(`❌ Erreur serveur (${error.response.status}): ${apiMsg}`);
+    } else if (error?.request) {
+      // Aucune réponse du serveur
+      showMessage("❌ Erreur réseau : impossible de contacter le serveur");
+    } else {
+      // Erreur JS (ex: bug dans le code)
+      showMessage(`❌ Erreur interne : ${error.message}`);
     }
-  };
-  */
+  }
+};
 
+  
   // Mise à jour d'une église
   /*
   const updateEglise = async (id: string, updatedEglise: Eglise) => {
@@ -140,9 +157,6 @@ export const useEglise = (): UseEgliseReturn => {
 
  
   // Fonctions temporaires pour éviter l'erreur TypeScript
-  const deleteEglise = async (id: string) => {
-    console.log('deleteEglise not implemented yet');
-  };
 
   const updateEglise = async (id: string, updatedEglise: Eglise) => {
     console.log('updateEglise not implemented yet');

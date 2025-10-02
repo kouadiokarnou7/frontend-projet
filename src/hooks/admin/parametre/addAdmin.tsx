@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
-import type { AdminData, SecuritySettings, UseAddAdminReturn } from '../../interfaces/parametres';
+import type { AdminData, SecuritySettings, UseAddAdminReturn } from '../../../interfaces/parametres';
 
 export const useAddAdmin = (): UseAddAdminReturn => {
   // États pour le modal d'ajout d'admin

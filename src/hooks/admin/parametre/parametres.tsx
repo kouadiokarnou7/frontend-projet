@@ -6,7 +6,7 @@ import type {
   ActiveTab,
   AdminData,
   UseParametresReturn
-} from '../../interfaces/parametres';
+} from '../../../interfaces/parametres';
 import axios from 'axios';
 
 const BASE_URL = 'http://localhost:5000';
